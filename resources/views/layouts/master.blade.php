@@ -31,6 +31,9 @@
                         <li class="nav-item">
                             <a class="nav-link {{ request()->routeIs('admin.movie*') ? 'active' : '' }}" href="{{ route('admin.movie.index') }}">Movies</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('admin.category*') ? 'active' : '' }}" href="{{ route('admin.category.index') }}">Category</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -77,5 +80,24 @@
         </main>
     </div>
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/js/sweetalert2.all.min.js') }}"></script>
+    @if (Session()->has('success'))
+        <script>
+        Swal.fire({
+            title: "Success",
+            text: "{{ session()->get('success') }}",
+            icon: "success"
+        });
+        </script>
+    @endif
+    @if (Session()->has('error'))
+        <script>
+        Swal.fire({
+            title: "Error!",
+            text: "{{ session()->get('error') }}",
+            icon: "error"
+        });
+        </script>
+    @endif
 </body>
 </html>
