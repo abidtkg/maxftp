@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'MaxFTP') }}</title>
+    <title>@yield('title') - {{ config('app.name', 'MaxFTP') }}</title>
 
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
     @yield('page-css')

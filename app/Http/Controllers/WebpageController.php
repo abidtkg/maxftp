@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Movie;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,7 +12,8 @@ class WebpageController extends Controller
     public function index()
     {
         $movies = Movie::orderBy('id', 'DESC')->paginate(120);
-        return view('web.index', compact('movies'));
+        $categories = Category::all();
+        return view('web.index', compact('movies', 'categories'));
     }
 
     public function home()
@@ -28,5 +30,10 @@ class WebpageController extends Controller
     {
         $movie = Movie::findOrFail($id);
         return view('web.movie', compact('movie'));
+    }
+
+    public function request_movie(Request $request)
+    {
+        return $request;
     }
 }
