@@ -4,8 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Movie;
+use App\Models\RequestMovie;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
+use function Pest\Laravel\call;
 
 class WebpageController extends Controller
 {
@@ -32,8 +36,28 @@ class WebpageController extends Controller
         return view('web.movie', compact('movie'));
     }
 
-    public function request_movie(Request $request)
+    public function request_movie_page()
     {
-        return $request;
+        return view('web.movie-request');
+    }
+
+    public function request_movie_store(Request $request)
+    {
+        $request->validate([
+            'email' => 'nullable|string|max:255',
+            'movie_name' => 'required|string|max:255',
+            'imdb_id' => 'nullable|string|max:255'
+        ]);
+
+        try{
+            RequestMovie::create([
+                'email' => $request->email,
+                'movie_name' => $request->movie_name,
+                'imdb_id' => $request->imdb_id
+            ]);
+            return back()->with('success', 'Request sent!');
+        }catch(Exception $e){
+            return back()->with('error', 'Something went wrong!');
+        }
     }
 }

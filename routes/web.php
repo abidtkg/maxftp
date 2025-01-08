@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 Route::get('/', [WebpageController::class, 'index'])->name('web.index');
 Route::get('/movie/{id}', [WebpageController::class, 'movie_page'])->name('web.movie');
+Route::get('/request-movie', [WebpageController::class, 'request_movie_page'])->name('web.requestmovie');
+Route::post('/request-movie/store', [WebpageController::class, 'request_movie_store'])->name('web.requestmovie.store');
 Route::get('/home', [WebpageController::class, 'home'])->name('home');
 
 Route::prefix('/admin')->name('admin.')->middleware([AdminGuard::class])->group(function(){

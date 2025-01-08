@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('movie_name');
             $table->string('email')->nullable();
             $table->string('imdb_id')->nullable();
+            $table->boolean('done')->default(false);
             $table->timestamps();
         });
     }

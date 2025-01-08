@@ -29,6 +29,21 @@
                         <li class="nav-item">
                             <a class="nav-link {{ request()->routeIs('web.index') ? 'active' : '' }}" href="{{ route('web.index') }}">Home</a>
                         </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Categories
+                            </a>
+                            <ul class="dropdown-menu">
+                                @foreach ($menuItems as $category)
+                                <li>
+                                    <a class="dropdown-item" href="#">{{$category->name}}</a>
+                                </li>
+                                @endforeach
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('web.requestmovie') ? 'active' : '' }}" href="{{ route('web.requestmovie') }}">Requst Movie</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -83,5 +98,24 @@
     </div>
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
     @yield('page-js')
+    <script src="{{ asset('assets/js/sweetalert2.all.min.js') }}"></script>
+    @if (Session()->has('success'))
+        <script>
+        Swal.fire({
+            title: "Success",
+            text: "{{ session()->get('success') }}",
+            icon: "success"
+        });
+        </script>
+    @endif
+    @if (Session()->has('error'))
+        <script>
+        Swal.fire({
+            title: "Error!",
+            text: "{{ session()->get('error') }}",
+            icon: "error"
+        });
+        </script>
+    @endif
 </body>
 </html>
