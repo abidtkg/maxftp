@@ -29,10 +29,13 @@
                             <a class="nav-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}" href="{{ route('admin.dashboard') }}">Dashboard</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {{ request()->routeIs('admin.movie*') ? 'active' : '' }}" href="{{ route('admin.movie.index') }}">Movies</a>
+                            <a class="nav-link {{ request()->routeIs('admin.movie.index') ? 'active' : '' }}" href="{{ route('admin.movie.index') }}">Movies</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {{ request()->routeIs('admin.category*') ? 'active' : '' }}" href="{{ route('admin.category.index') }}">Category</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('admin.moviereq.index') ? 'active' : '' }}" href="{{ route('admin.moviereq.index') }}">Requests</a>
                         </li>
                     </ul>
 

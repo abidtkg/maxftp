@@ -3,6 +3,7 @@
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\MovieController;
+use App\Http\Controllers\admin\MovierequestController;
 use App\Http\Controllers\WebpageController;
 use App\Http\Middleware\AdminGuard;
 use Illuminate\Support\Facades\Auth;
@@ -26,4 +27,9 @@ Route::prefix('/admin')->name('admin.')->middleware([AdminGuard::class])->group(
     Route::get('/category', [CategoryController::class, 'index'])->name('category.index');
     Route::post('/category/store', [CategoryController::class, 'store'])->name('category.store');
     Route::get('/category/delete/{id}', [CategoryController::class, 'delete'])->name('category.delete');
+
+    // MOVIE REQUEST
+    Route::get('/movie-requests', [MovierequestController::class, 'index'])->name('moviereq.index');
+    Route::get('/movie-request/delete/{id}', [MovierequestController::class, 'delete'])->name('moviereq.delete');
+    Route::get('/movie-request/approve/{id}', [MovierequestController::class, 'approve'])->name('moviereq.approve');
 });
