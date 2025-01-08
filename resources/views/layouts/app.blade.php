@@ -30,13 +30,13 @@
                             <a class="nav-link {{ request()->routeIs('web.index') ? 'active' : '' }}" href="{{ route('web.index') }}">Home</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle {{ request()->routeIs('web.category*') ? 'active' : '' }}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Categories
                             </a>
                             <ul class="dropdown-menu">
                                 @foreach ($menuItems as $category)
                                 <li>
-                                    <a class="dropdown-item" href="#">{{$category->name}}</a>
+                                    <a class="dropdown-item" href="{{ route('web.category', $category->id) }}">{{$category->name}}</a>
                                 </li>
                                 @endforeach
                             </ul>
@@ -91,8 +91,8 @@
         <footer class="my-5 pt-5 text-body-secondary text-center text-small">
             <p class="mb-1">© {{ config('app.name') }} All Rights Reseserved</p>
             <ul class="list-inline">
-              <li class="list-inline-item"><a href="#">Contact Support</a></li>
-              <li class="list-inline-item"><a href="#">Request Movie</a></li>
+              {{-- <li class="list-inline-item"><a href="#">Contact Support</a></li> --}}
+              <li class="list-inline-item"><a href="{{ route('web.requestmovie') }}">Request Movie</a></li>
             </ul>
           </footer>
     </div>

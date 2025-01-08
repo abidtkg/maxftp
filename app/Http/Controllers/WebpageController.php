@@ -36,6 +36,13 @@ class WebpageController extends Controller
         return view('web.movie', compact('movie'));
     }
 
+    public function movie_category($id)
+    {
+        $category = Category::findOrFail($id);
+        $movies = Movie::where('category_id', $category->id)->orderBy('created_at', 'DESC')->paginate(120);
+        return view('web.category-movie', compact('category', 'movies'));
+    }
+
     public function request_movie_page()
     {
         return view('web.movie-request');
