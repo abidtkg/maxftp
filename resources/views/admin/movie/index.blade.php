@@ -13,19 +13,28 @@
             </tr>
         </thead>
         <tbody>
+            @foreach ($movies as $movie)
             <tr>
-                <th scope="row">1</th>
+                <th scope="row">{{ $movie->id }}</th>
                 <td>
-                    <img src="" alt="">
+                    <img src="{{ asset('uploads/' . $movie->image) }}" class="img-fluid" style="max-height: 70px;" alt="">
                 </td>
-                <td>Movie name</td>
-                <td>10 hours ago</td>
+                <td>{{ $movie->name }}</td>
+                <td>{{ date('d M Y', strtotime($movie->created_at)) }}</td>
                 <td>
                     <a class="btn btn-info" href="#">Edit</a>
-                    <a class="btn btn-danger" href="#">Delete</a>
+                    <a class="btn btn-danger" onclick="confirm('Are you sure?')" href="{{ route('admin.movie.delete', $movie->id) }}">Delete</a>
                 </td>
             </tr>
+            @endforeach
         </tbody>
     </table>
+    @if ($movies->hasPages())
+        <div class="card-footer clearfix">
+            <div class="pagination-wrapper">
+                {{ $movies->links('pagination::bootstrap-5') }}
+            </div>
+        </div>
+    @endif
 </div>
 @endsection

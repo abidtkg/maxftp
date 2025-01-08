@@ -20,6 +20,7 @@ Route::prefix('/admin')->name('admin.')->middleware([AdminGuard::class])->group(
     Route::get('/movies', [MovieController::class, 'index'])->name('movie.index');
     Route::get('/movie/create', [MovieController::class, 'create'])->name('movie.create');
     Route::post('/movie/store', [MovieController::class, 'store'])->name('movie.store');
+    Route::get('/movie/delete/{id}', [MovieController::class, 'delete'])->name('movie.delete');
 
     // CATEGORY
     Route::get('/category', [CategoryController::class, 'index'])->name('category.index');

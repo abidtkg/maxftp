@@ -14,12 +14,13 @@ return new class extends Migration
     {
         Schema::create('movies', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Category::class)->constrained()->comment('Class ID');
+            $table->foreignIdFor(Category::class)->constrained()->comment('Category ID');
             $table->string('name');
             $table->string('image');
             $table->string('link');
             $table->string('quality');
-            $table->integer('played');
+            $table->integer('played')->default(0);
+            $table->string('imdbid')->nullable();
             $table->timestamps();
         });
     }

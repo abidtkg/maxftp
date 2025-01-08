@@ -6,50 +6,43 @@
             <h5>Add Movie</h5>
         </div>
         <div class="card-body">
-            <form class="row g-3">
-                <div class="col-md-6">
-                  <label for="inputEmail4" class="form-label">Email</label>
-                  <input type="email" class="form-control" id="inputEmail4">
+            <form class="row g-3" method="POST" action="{{ route('admin.movie.store') }}" enctype="multipart/form-data">
+                @csrf
+                <div class="col-md-12">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name">
+                </div>
+                <div class="col-md-12">
+                    <label for="link" class="form-label">Streaming File Link (mp4 file)</label>
+                    <input type="text" name="link" class="form-control @error('link') is-invalid @enderror" id="link">
                 </div>
                 <div class="col-md-6">
-                  <label for="inputPassword4" class="form-label">Password</label>
-                  <input type="password" class="form-control" id="inputPassword4">
-                </div>
-                <div class="col-12">
-                  <label for="inputAddress" class="form-label">Address</label>
-                  <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-                </div>
-                <div class="col-12">
-                  <label for="inputAddress2" class="form-label">Address 2</label>
-                  <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+                    <label for="imdbid" class="form-label">IMDB ID</label>
+                    <input type="text" name="imdbid" class="form-control @error('imdbid') is-invalid @enderror" id="imdbid">
                 </div>
                 <div class="col-md-6">
-                  <label for="inputCity" class="form-label">City</label>
-                  <input type="text" class="form-control" id="inputCity">
+                    <label for="category_id" class="form-label">Category</label>
+                    <select id="category_id" name="category_id" class="form-select @error('category_id') is-invalid @enderror">
+                        @foreach ($categories as $category)
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @endforeach
+                    </select>
                 </div>
-                <div class="col-md-4">
-                  <label for="inputState" class="form-label">State</label>
-                  <select id="inputState" class="form-select">
-                    <option selected>Choose...</option>
-                    <option>...</option>
-                  </select>
+                <div class="col-md-6">
+                    <label for="quality" class="form-label @error('category_id') is-invalid @enderror">Category</label>
+                    <select id="quality" name="quality" class="form-select">
+                        <option value="SD">SD</option>
+                        <option value="HD">HD</option>
+                    </select>
                 </div>
-                <div class="col-md-2">
-                  <label for="inputZip" class="form-label">Zip</label>
-                  <input type="text" class="form-control" id="inputZip">
-                </div>
-                <div class="col-12">
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="gridCheck">
-                    <label class="form-check-label" for="gridCheck">
-                      Check me out
-                    </label>
-                  </div>
+                <div class="col-md-6">
+                    <label for="image" class="form-label">Thumbnail Image</label>
+                    <input class="form-control @error('image') is-invalid @enderror" type="file" name="image" id="image" accept="image/*">
                 </div>
                 <div class="col-12">
-                  <button type="submit" class="btn btn-primary">Sign in</button>
+                    <button type="submit" class="btn btn-primary">SUBMIT</button>
                 </div>
-              </form>
+            </form>
         </div>
     </div>
 </div>
