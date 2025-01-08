@@ -3,17 +3,15 @@
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\MovieController;
+use App\Http\Controllers\WebpageController;
 use App\Http\Middleware\AdminGuard;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [WebpageController::class, 'index'])->name('web.index');
+Route::get('/movie/{id}', [WebpageController::class, 'movie_page'])->name('web.movie');
+Route::get('/home', [WebpageController::class, 'home'])->name('home');
 
 Route::prefix('/admin')->name('admin.')->middleware([AdminGuard::class])->group(function(){
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');

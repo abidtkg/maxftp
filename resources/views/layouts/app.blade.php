@@ -10,6 +10,7 @@
     <title>{{ config('app.name', 'MaxFTP') }}</title>
 
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
+    @yield('page-css')
 </head>
 <body>
     <div id="app">
@@ -25,7 +26,9 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('web.index') ? 'active' : '' }}" href="{{ route('web.index') }}">Home</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -70,7 +73,15 @@
         <main class="py-4">
             @yield('content')
         </main>
+        <footer class="my-5 pt-5 text-body-secondary text-center text-small">
+            <p class="mb-1">© {{ config('app.name') }} All Rights Reseserved</p>
+            <ul class="list-inline">
+              <li class="list-inline-item"><a href="#">Contact Support</a></li>
+              <li class="list-inline-item"><a href="#">Request Movie</a></li>
+            </ul>
+          </footer>
     </div>
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
+    @yield('page-js')
 </body>
 </html>
